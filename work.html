@@ -1,27 +1,280 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Work | Adnan Syukur</title><meta name="description" content="Selected full-stack, product, and security projects by Adnan Syukur."><link rel="stylesheet" href="css/style.css"><script src="js/script.js" defer></script></head>
-<body><header class="site-header"><div class="container header-inner"><a class="brand" href="index.html"><span class="brand-mark">AS</span><span class="brand-label">Adnan Syukur</span></a><button class="nav-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button><nav class="site-nav" aria-label="Primary navigation"><a href="about.html">About</a><a href="work.html" aria-current="page">Work</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a><a href="assets/Adnan%20Syukur%20CV.pdf" download="Adnan-Syukur-CV.pdf">Download CV</a></nav></div></header>
-<main><section class="page-hero"><div class="container"><p class="kicker">Work / 02</p><h1>Projects with a reason to exist.</h1><p>A selection of products, labs, and tools that show how I approach ownership, security, and learning through delivery.</p></div></section>
-<section class="section"><div class="container"><div class="section-heading"><span class="section-label">01 / Selected projects</span><div><h2>Built, tested, and explained.</h2><p>Each project has a different job. Together they show the range of work I enjoy, from user-facing products to deliberately vulnerable systems.</p></div></div><div class="card-grid"><article class="card project-card"><div><div class="card-top"><p class="card-kicker">01 / Shipped</p><span class="status">MERN</span></div><h3>C-Pay</h3><p>Closed-loop digital wallet and payment system for campus events. I owned the schema, transaction path, API layer, authentication, and frontend implementation.</p></div><div class="card-footer"><div class="tags"><span class="tag">MongoDB</span><span class="tag">Express</span><span class="tag">React</span><span class="tag">Node.js</span></div></div></article><article class="card project-card"><div><div class="card-top"><p class="card-kicker">02 / Shipped</p><span class="status">TOP 50</span></div><h3>Bhaswara</h3><p>Gamified regional-language learning prototype built with Team OOTD for a national competition. I led technical implementation and product direction across a five-person team.</p></div><div class="card-footer"><div class="tags"><span class="tag">Product direction</span><span class="tag">Full-stack</span><span class="tag">Team leadership</span></div></div></article><article class="card project-card"><div><div class="card-top"><p class="card-kicker">03 / Shipped</p><span class="status">PRODUCT</span></div><h3>LifeFin</h3><p>Financial management platform for UMKM owners. The focus was making data handling understandable and the interface usable for non-technical users.</p></div><div class="card-footer"><div class="tags"><span class="tag">React</span><span class="tag">Supabase</span><span class="tag">Accessibility</span></div></div></article><article class="card project-card"><div><div class="card-top"><p class="card-kicker">04 / Lab</p><span class="status">CONTROLLED</span></div><h3>API Pentesting Lab</h3><p>Self-built deliberately vulnerable API containing IDOR, broken authentication, and injection paths. It provides a safe environment for repeating testing and reporting workflows.</p></div><div class="card-footer"><div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">VAPT</span></div></div></article><article class="card project-card"><div><div class="card-top"><p class="card-kicker">05 / In progress</p><span class="status progress">LEARNING</span></div><h3>Recon Automation Toolkit</h3><p>Early-stage Go tooling for subdomain enumeration and endpoint discovery. The project is deliberately small so the learning stays visible and testable.</p></div><div class="card-footer"><div class="tags"><span class="tag">Go</span><span class="tag">Automation</span><span class="tag">Recon</span></div></div></article><article class="card project-card"><div><div class="card-top"><p class="card-kicker">06 / Reference</p><span class="status progress">ONGOING</span></div><h3>Pentesting Vault</h3><p>A structured knowledge base for vulnerability notes, payloads, and methodology. The current goal is turning private study notes into useful public technical writing.</p></div><div class="card-footer"><div class="tags"><span class="tag">Markdown</span><span class="tag">Documentation</span><span class="tag">Research</span></div></div></article></div></div></section>
-<section class="section"><div class="container"><div class="section-heading"><span class="section-label">02 / Case study</span><div><h2>C-Pay, from cash problem to auditable flow.</h2><p>The project matters less as a product claim than as a record of the decisions, constraints, and improvements I would make next.</p></div></div><div class="case-study"><span class="case-study-label">The problem</span><div><h3>Campus events needed a clearer payment trail.</h3><p>Cash created reconciliation errors and made disputes difficult to resolve. C-Pay introduced a closed-loop wallet system for event check-in, merchant payment, and transaction history.</p></div></div><div class="case-study"><span class="case-study-label">Architecture</span><div><pre class="architecture">CLIENT: React
-  Event check-in | Wallet balance | Merchant terminal
-                 |
-API: Express and Node.js
-  Auth middleware | Transaction service | Input validation
-                 |
-DATA: MongoDB
-  Users and wallets | Transaction ledger | Event records</pre></div></div><div class="case-study"><span class="case-study-label">Key decisions</span><div><h3>Keep high-consequence paths boring and central.</h3><p>Transaction logic was isolated from controllers so balance changes followed one audited path. Mutating requests re-validated ownership server-side to reduce IDOR risk. Session-based tokens made revocation straightforward during live events. MongoDB supported flexible event metadata, although a future version could use PostgreSQL for stronger ledger guarantees.</p></div></div><div class="case-study"><span class="case-study-label">Next version</span><div><h3>Confidence comes from the work still left to do.</h3><p>I would add integration tests around transaction logic, rate limiting on payment endpoints, and stronger observability before treating the system as production-ready. C-Pay was used for campus events, not commercial payment volume.</p></div></div></div></section>
-<section class="section"><div class="container"><div class="section-heading"><span class="section-label">03 / Code pattern</span><div><h2>Fail closed, check ownership.</h2><p>A representative middleware pattern used to prevent unauthorized access to wallet and transaction resources.</p></div></div><pre class="code"><code>const verifyOwnership = (Model, paramField = 'id') => {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work | Adnan Syukur</title>
+<meta name="description" content="Featured projects, the C-Pay payment system case study, security testing methodology, and a code sample from Adnan Syukur.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Work | Adnan Syukur">
+<meta property="og:description" content="Featured projects, the C-Pay payment system case study, security testing methodology, and a code sample from Adnan Syukur.">
+<meta property="og:url" content="https://myportofolio-11053.web.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Work | Adnan Syukur">
+<meta name="twitter:description" content="Featured projects, the C-Pay payment system case study, security testing methodology, and a code sample from Adnan Syukur.">
+<meta name="theme-color" content="#122033">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">AS</span>
+      <span class="brand-label">Adnan Syukur</span>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="contact.html">Contact</a>
+      <a href="assets/Adnan%20Syukur%20CV.pdf" target="_blank" rel="noopener">Resume &#8599;</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="kicker">Work</p>
+      <h1>Selected projects, a full case study, and the testing method behind them.</h1>
+      <p>Seven projects across full-stack development and security research, one architecture deep dive, and the five-step process used on every security assessment.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="section-label">Featured Projects</p>
+        <p>Status reflects where each project actually stands, not a uniform "in progress" placeholder.</p>
+      </div>
+
+      <div class="card-grid two">
+
+        <div class="card project-card">
+          <div>
+            <div class="card-top">
+              <p class="card-kicker">Sole Developer, MERN</p>
+              <span class="status">Shipped</span>
+            </div>
+            <h3>C-Pay</h3>
+            <p>Closed-loop payment system for campus events. Schema design, transaction logic, API layer, and frontend built solo, from concept through working implementation.</p>
+          </div>
+          <div class="card-footer">
+            <div class="tags"><span class="tag">MongoDB</span><span class="tag">Express</span><span class="tag">React</span><span class="tag">Node.js</span></div>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div>
+            <div class="card-top">
+              <p class="card-kicker">Lead Developer, Team OOTD</p>
+              <span class="status">Shipped</span>
+            </div>
+            <h3>Bhaswara (BudayaGo)</h3>
+            <p>Gamified regional-language learning prototype for a national competition. Top 50 national finalist, with responsibility for product direction and technical implementation across a 5-person team.</p>
+          </div>
+          <div class="card-footer">
+            <div class="tags"><span class="tag">Game Design</span><span class="tag">Full-Stack</span><span class="tag">Team Leadership</span></div>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div>
+            <div class="card-top">
+              <p class="card-kicker">Full-Stack Developer</p>
+              <span class="status">Shipped</span>
+            </div>
+            <h3>LifeFin</h3>
+            <p>Financial management platform for micro, small, and medium enterprises, focused on data handling practices and a clean, accessible interface for non-technical owners.</p>
+          </div>
+          <div class="card-footer">
+            <div class="tags"><span class="tag">React</span><span class="tag">Supabase</span><span class="tag">Accessibility</span></div>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div>
+            <div class="card-top">
+              <p class="card-kicker">Self-Built, Deliberately Vulnerable API</p>
+              <span class="status">Shipped</span>
+            </div>
+            <h3>API Pentesting Lab</h3>
+            <p>A hands-on environment simulating real-world vulnerability classes, including IDOR, broken authentication, and injection points, built to refine testing methodology in a controlled sandbox.</p>
+          </div>
+          <div class="card-footer">
+            <div class="tags"><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">Security Research</span></div>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div>
+            <div class="card-top">
+              <p class="card-kicker">Personal Tooling, Early Stage</p>
+              <span class="status progress">In Progress</span>
+            </div>
+            <h3>Recon Automation Toolkit</h3>
+            <p>A toolkit automating the initial reconnaissance phase of security testing, focused on subdomain enumeration and endpoint discovery. Built as the primary vehicle for learning Go.</p>
+          </div>
+          <div class="card-footer">
+            <div class="tags"><span class="tag">Go</span><span class="tag">Automation</span><span class="tag">Recon</span></div>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div>
+            <div class="card-top">
+              <p class="card-kicker">Reference Implementation</p>
+              <span class="status">Shipped</span>
+            </div>
+            <h3>Firebase Auth Demo</h3>
+            <p>Authentication using React and Firebase Auth, implementing email verification and secure session handling. Used as a reference for smaller projects that do not warrant a fully custom auth layer.</p>
+          </div>
+          <div class="card-footer">
+            <div class="tags"><span class="tag">React</span><span class="tag">Firebase Auth</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="section-label">Case Study</p>
+        <p>C-Pay: closed-loop payment architecture, from problem to honest scope.</p>
+      </div>
+
+      <div class="case-study">
+        <p class="case-study-label">The Problem</p>
+        <div>
+          <h3>Cash reconciliation had no audit trail</h3>
+          <p>Campus events at my university handled payments with cash, which created two recurring issues: reconciliation errors at the end of each event, and no audit trail when disputes came up about what a student had or had not paid. C-Pay replaces that with a closed-loop digital wallet system specific to campus events.</p>
+        </div>
+      </div>
+
+      <div class="case-study">
+        <p class="case-study-label">System Architecture</p>
+        <div>
+          <h3>Three layers, one audited write path</h3>
+          <pre class="architecture">+------------------------------------------------------------+
+|                     CLIENT (React)                          |
+|  Event Check-in UI . Wallet Balance View . Merchant Terminal |
++---------------------------+----------------------------------+
+                             | HTTPS / REST
++---------------------------v----------------------------------+
+|              API LAYER (Express.js / Node.js)                |
+|  Auth Middleware  |  Transaction Controller  |  Input        |
+|  (session/token)  |                          |  Validation   |
++---------------------------+----------------------------------+
+                             |
++---------------------------v----------------------------------+
+|                    DATABASE (MongoDB)                        |
+|  Users/Wallets Collection . Transactions Ledger . Event Data |
++------------------------------------------------------------+</pre>
+        </div>
+      </div>
+
+      <div class="case-study">
+        <p class="case-study-label">Design Decisions</p>
+        <div>
+          <h3>Four decisions and the reasoning behind them</h3>
+          <ul class="rule-list">
+            <li><strong>Isolation</strong><span>Transaction logic isolated from the controller layer, so balance changes can only happen through one audited code path. Any new route goes through the same function, meaning the same validation and logging apply every time. The cost is some development speed, a trade-off worth it for a system handling money.</span></li>
+            <li><strong>Ownership</strong><span>Every mutating request re-validates ownership server-side, a direct response to how easily IDOR bugs slip into naive "user owns this record" checks that trust a request parameter without verifying it against the authenticated session.</span></li>
+            <li><strong>Schema</strong><span>MongoDB was chosen for flexible event and transaction schemas, since campus events have varying metadata needs and a document model avoided constant schema migrations mid-build. In hindsight, a hybrid approach with PostgreSQL for the transaction ledger might give stronger consistency guarantees.</span></li>
+            <li><strong>Auth</strong><span>Session-based tokens were chosen over pure JWT mainly for simpler revocation during the event itself, since killing a session immediately if a device was lost mattered more than the statelessness benefits of JWT here.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-study">
+        <p class="case-study-label">What I'd Change</p>
+        <div>
+          <h3>Two concrete next steps</h3>
+          <p>Add automated integration tests around the transaction controller specifically, since that is the highest-consequence code path and currently relies on manual testing before each deployment. Add rate limiting on the transaction endpoints, which was not implemented in the first version.</p>
+        </div>
+      </div>
+
+      <div class="case-study">
+        <p class="case-study-label">Honest Scope Note</p>
+        <div>
+          <h3>A student project, stated as one</h3>
+          <p>C-Pay was built and used for campus events, not deployed as a commercial payment processor and not handling real-world transaction volume at scale. What it demonstrates is the ability to own a complete system, including the security-conscious decisions above, from schema to shipped product.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="section-label">Security Methodology</p>
+        <p>A repeatable five-step process, developed through the university-recognized assessment and a self-built pentesting lab.</p>
+      </div>
+      <ul class="rule-list">
+        <li><strong>01 Recon</strong><span>Enumerate subdomains, live hosts, and historical endpoints using Subfinder, Amass, Gau, and Waybackurls to build a full picture of the attack surface. The goal here is coverage, not depth.</span></li>
+        <li><strong>02 Mapping</strong><span>Walk the mapped surface to understand application logic: authentication flows, role boundaries, API structure, and where user-controlled input meets business logic.</span></li>
+        <li><strong>03 Exploitation</strong><span>Focused manual testing against high-risk classes, primarily IDOR and authentication bypass, alongside the broader OWASP Top 10. Access control issues tend to have the clearest, most demonstrable impact.</span></li>
+        <li><strong>04 Validation</strong><span>Every finding is retested to confirm real, reproducible impact. Theoretical or unconfirmed issues are not included in a final report.</span></li>
+        <li><strong>05 Report</strong><span>Findings are documented with clear reproduction steps and concrete mitigation guidance, plus a severity rationale, so a developer can act on them directly.</span></li>
+      </ul>
+      <div class="note">This methodology was directly responsible for the VAPT Excellence Award from Universitas Siber Indonesia, awarded for a security evaluation of live university digital assets.</div>
+    </div>
+  </section>
+
+  <section class="section" style="border-bottom: none;">
+    <div class="container">
+      <div class="section-heading">
+        <p class="section-label">Code Sample</p>
+        <p>Ownership-checked, fail-closed middleware, a representative pattern used across C-Pay to prevent IDOR on wallet and transaction routes.</p>
+      </div>
+      <pre class="code">// middleware/verifyOwnership.js
+
+const verifyOwnership = (Model, paramField = 'id') => {
   return async (req, res, next) => {
-    const resource = await Model.findById(req.params[paramField]);
+    try {
+      const resource = await Model.findById(req.params[paramField]);
 
-    if (!resource) return res.status(404).json({ error: 'Not found' });
-    if (resource.userId.toString() !== req.user.id.toString()) {
-      return res.status(403).json({ error: 'Forbidden' });
+      if (!resource) {
+        return res.status(404).json({ error: 'Resource not found' });
+      }
+
+      // Fail closed: only the authenticated owner may proceed
+      if (resource.userId.toString() !== req.user.id.toString()) {
+        return res.status(403).json({ error: 'Forbidden' });
+      }
+
+      req.resource = resource;
+      next();
+    } catch (err) {
+      next(err);
     }
-
-    req.resource = resource;
-    next();
   };
-};</code></pre></div></section></main>
-<footer class="site-footer"><div class="container footer-inner"><p>Adnan Syukur / selected work</p><p>&copy; <span id="year"></span></p></div></footer><button class="back-top" aria-label="Back to top">↑</button></body></html>
+};
+
+module.exports = verifyOwnership;</pre>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>Built by Adnan Syukur. Tested with the same mindset an attacker would use.</p>
+    <p>&copy; <span id="year"></span></p>
+  </div>
+</footer>
+
+<button class="back-top" id="back-top" aria-label="Back to top">&#8593;</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>
