@@ -19,6 +19,16 @@ if (navToggle && siteNav) {
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
 
+document.querySelectorAll('.project-card .card-footer').forEach((footer) => {
+  const link = document.createElement('a');
+  link.className = 'card-link project-link';
+  link.href = 'https://github.com/SS7ZX';
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.textContent = 'View on GitHub +';
+  footer.appendChild(link);
+});
+
 const backTop = document.querySelector('.back-top');
 if (backTop) {
   const updateBackTop = () => backTop.classList.toggle('is-visible', window.scrollY > 500);
