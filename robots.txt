@@ -1,0 +1,27 @@
+# robots.txt
+# Search engine crawling directives for myportofolio-11053.web.app
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.pdf$
+
+# Crawl delay (in seconds) - be respectful
+Crawl-delay: 1
+
+# Specific bot rules
+User-agent: Googlebot
+Crawl-delay: 0.5
+Allow: /
+
+User-agent: Bingbot
+Crawl-delay: 1
+Allow: /
+
+# Disallow aggressive crawlers
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://myportofolio-11053.web.app/sitemap.xml
