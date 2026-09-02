@@ -1,7 +1,22 @@
 # .htaccess Configuration for Adnan Syukur Portfolio
 # Security headers, compression, caching, and optimization
 
-# ============ ENABLE SECURITY HEADERS ============
+# ============ ERROR HANDLING & CUSTOM ERROR PAGES ============
+
+# Redirect 404 (Not Found) errors to custom 404 page
+ErrorDocument 404 /404.html
+
+# Redirect 500 (Server Error) errors to custom 500 page
+ErrorDocument 500 /500.html
+
+# Redirect 503 (Service Unavailable) errors
+ErrorDocument 503 /500.html
+
+# Redirect 403 (Forbidden) errors
+ErrorDocument 403 /404.html
+
+# Redirect 400 (Bad Request) errors
+ErrorDocument 400 /404.html
 
 # Prevent clickjacking attacks
 <IfModule mod_headers.c>

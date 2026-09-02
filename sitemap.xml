@@ -15,7 +15,11 @@
         <priority>1.0</priority>
     </url>
 
-    <!-- About Page -->
+        <!-- About Page -->
+        <!-- Note: Error pages (404.html, 500.html) are NOT included in sitemap per SEO best practices -->
+        <!-- Error pages are handled by .htaccess and should not appear in search results -->
+
+        <!-- About Page -->
     <url>
         <loc>https://myportofolio-11053.web.app/about.html</loc>
         <lastmod>2026-09-02</lastmod>
