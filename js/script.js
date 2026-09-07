@@ -40,6 +40,10 @@
   document.body.classList.add('page-loading');
   function revealPage() {
     document.body.classList.remove('page-loading');
+    const curtain = $('.page-transition-curtain');
+    if (curtain) {
+      window.requestAnimationFrame(() => curtain.classList.remove('is-active'));
+    }
   }
   window.addEventListener('load', revealPage, { once: true });
   window.setTimeout(revealPage, CONFIG.pageLoadMaxWait);
@@ -50,6 +54,7 @@
   (function initPageTransitions() {
     const curtain = document.createElement('div');
     curtain.className = 'page-transition-curtain';
+    curtain.classList.add('is-active');
     curtain.setAttribute('aria-hidden', 'true');
     document.body.appendChild(curtain);
 
@@ -73,8 +78,10 @@
     });
 
     window.addEventListener('pageshow', () => {
-      curtain.classList.remove('is-active');
       document.body.classList.remove('page-leaving');
+      if (!document.body.classList.contains('page-loading')) {
+        curtain.classList.remove('is-active');
+      }
     });
   })();
 
