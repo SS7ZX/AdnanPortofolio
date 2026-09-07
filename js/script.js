@@ -45,21 +45,36 @@
   window.setTimeout(revealPage, CONFIG.pageLoadMaxWait);
 
   /* ============ PAGE TRANSITIONS ============ */
-  /* Same-document View Transitions when supported, graceful fallback otherwise. */
+  /* A branded fallback works across static hosting and browsers without
+     cross-document View Transitions support. */
   (function initPageTransitions() {
-    if (!document.startViewTransition || reducedMotion.matches) return;
+    const curtain = document.createElement('div');
+    curtain.className = 'page-transition-curtain';
+    curtain.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(curtain);
 
     document.addEventListener('click', (event) => {
       const link = event.target.closest('a[href]');
       if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
       const destination = new URL(link.href, window.location.href);
-      if (destination.origin !== window.location.origin || destination.hash) return;
+      if (destination.origin !== window.location.origin || destination.pathname === window.location.pathname && destination.hash) return;
 
       event.preventDefault();
-      document.startViewTransition(() => {
-        window.location.href = destination.href;
-      });
+      if (reducedMotion.matches) {
+        window.location.assign(destination.href);
+        return;
+      }
+
+      document.body.classList.add('page-leaving');
+      curtain.classList.add('is-active');
+      window.setTimeout(() => window.location.assign(destination.href), 460);
+    });
+
+    window.addEventListener('pageshow', () => {
+      curtain.classList.remove('is-active');
+      document.body.classList.remove('page-leaving');
     });
   })();
 
@@ -393,6 +408,20 @@
       frame.style.setProperty('--frame-x', '0px');
       frame.style.setProperty('--frame-y', '0px');
       frame.style.setProperty('--frame-rotate', '1.5deg');
+    });
+  })();
+
+  /* ============ POINTER SPOTLIGHTS ============ */
+  (function initPointerSpotlights() {
+    if (!finePointer.matches || reducedMotion.matches) return;
+
+    const surfaces = $$('.card, .feature-card, .skill-group');
+    surfaces.forEach((surface) => {
+      surface.addEventListener('pointermove', (event) => {
+        const bounds = surface.getBoundingClientRect();
+        surface.style.setProperty('--pointer-x', event.clientX - bounds.left + 'px');
+        surface.style.setProperty('--pointer-y', event.clientY - bounds.top + 'px');
+      });
     });
   })();
 
