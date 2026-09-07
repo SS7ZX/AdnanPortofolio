@@ -12,6 +12,32 @@ const CONFIG = {
   navToggleDelay: 0,
 };
 
+// ============ PAGE TRANSITIONS ============
+(function initPageTransitions() {
+  document.body.classList.add('page-loading');
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => document.body.classList.remove('page-loading'));
+  });
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) return;
+
+  document.querySelectorAll('a[href]').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') return;
+
+    link.addEventListener('click', (event) => {
+      const destination = new URL(link.href, window.location.href);
+      if (destination.origin !== window.location.origin) return;
+
+      event.preventDefault();
+      document.body.classList.add('page-leaving');
+      window.setTimeout(() => { window.location.href = destination.href; }, 320);
+    });
+  });
+})();
+
 // ============ NAVIGATION ============
 (function initNavigation() {
   const navToggle = document.querySelector('.nav-toggle');
@@ -157,6 +183,48 @@ const CONFIG = {
   );
 
   revealElements.forEach((el) => revealObserver.observe(el));
+})();
+
+// ============ EDITORIAL FRAME DEPTH ============
+(function initFrameDepth() {
+  const frame = document.querySelector('.hero-frame');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pointerDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (!frame || reducedMotion || !pointerDevice) return;
+
+  frame.addEventListener('pointermove', (event) => {
+    const bounds = frame.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    frame.style.setProperty('--frame-x', `${x * 7}px`);
+    frame.style.setProperty('--frame-y', `${y * 7}px`);
+    frame.style.setProperty('--frame-rotate', `${1.5 + x * 1.5}deg`);
+  });
+
+  frame.addEventListener('pointerleave', () => {
+    frame.style.setProperty('--frame-x', '0px');
+    frame.style.setProperty('--frame-y', '0px');
+    frame.style.setProperty('--frame-rotate', '1.5deg');
+  });
+})();
+
+// ============ EDITORIAL SCROLL MARKER ============
+(function initScrollMarker() {
+  const marker = document.createElement('div');
+  marker.className = 'scroll-marker';
+  marker.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(marker);
+
+  function updateMarker() {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+    marker.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
+  }
+
+  window.addEventListener('scroll', updateMarker, { passive: true });
+  window.addEventListener('resize', updateMarker, { passive: true });
+  updateMarker();
 })();
 
 // ============ EXTERNAL LINK AFFORDANCES ============
