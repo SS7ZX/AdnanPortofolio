@@ -38,11 +38,12 @@
 
 <!-- Preload and Prefetch -->
 <link rel="preload" href="css/style.css" as="style">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <!-- Stylesheet -->
 <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myportofolio-11053.web.app/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://myportofolio-11053.web.app/contact.html"}]}
+</script>
 
 <!-- No-JavaScript fallback -->
 <noscript>
@@ -81,7 +82,7 @@
 
   <section class="page-hero">
     <div class="container">
-      <p class="kicker">Contact</p>
+      <p class="kicker">Case File 05 — Contact</p>
       <h1>Let's talk.</h1>
       <p>Actively looking for placements and collaborations in full-stack development, junior red team or cybersecurity work, or project coordination.</p>
     </div>
@@ -139,6 +140,37 @@
           <p>Yes. Reach out by email or LinkedIn with project scope and timeline, and I will say honestly whether it is within what I can currently deliver well.</p>
         </details>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <p class="section-label">Direct Brief</p>
+        <p>Use the form to prepare an email. It opens your email client with the details already structured; no message is stored by this static site.</p>
+      </div>
+      <form class="form-grid" action="mailto:adnannsyukurr@gmail.com" method="post" enctype="text/plain">
+        <div class="form-field">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="form-field">
+          <label for="contact-email">Email</label>
+          <input id="contact-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="form-field full">
+          <label for="contact-subject">Subject</label>
+          <input id="contact-subject" name="subject" type="text" required>
+        </div>
+        <div class="form-field full">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" required></textarea>
+        </div>
+        <div class="form-field full">
+          <button class="button button-primary" type="submit">Prepare email &#8594;</button>
+          <p class="form-note">Client-only fallback: a production form service can replace this mailto action later without changing the interface.</p>
+        </div>
+      </form>
     </div>
   </section>
 

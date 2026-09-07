@@ -14,27 +14,17 @@ const CONFIG = {
 
 // ============ PAGE TRANSITIONS ============
 (function initPageTransitions() {
-  document.body.classList.add('page-loading');
+  if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => document.body.classList.remove('page-loading'));
-  });
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reducedMotion) return;
+    const destination = new URL(link.href, window.location.href);
+    if (destination.origin !== window.location.origin || destination.hash) return;
 
-  document.querySelectorAll('a[href]').forEach((link) => {
-    const href = link.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') return;
-
-    link.addEventListener('click', (event) => {
-      const destination = new URL(link.href, window.location.href);
-      if (destination.origin !== window.location.origin) return;
-
-      event.preventDefault();
-      document.body.classList.add('page-leaving');
-      window.setTimeout(() => { window.location.href = destination.href; }, 320);
-    });
+    event.preventDefault();
+    document.startViewTransition(() => { window.location.href = destination.href; });
   });
 })();
 
@@ -158,7 +148,7 @@ const CONFIG = {
 
   // Target elements for reveal animation
   const revealElements = document.querySelectorAll(
-    '.hero > .container, .page-hero > .container, .section-heading, .feature-card, .card, .timeline-item, .case-study, .stack-group, .contact-panel, .table-wrap, .faq'
+    '[data-reveal], [data-reveal-item], .hero > .container, .page-hero > .container, .section-heading, .feature-card, .card, .timeline-item, .case-study, .stack-group, .contact-panel, .table-wrap, .faq, .form-grid'
   );
 
   if (revealElements.length === 0) return;
