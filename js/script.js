@@ -275,6 +275,35 @@
     groups.forEach((group) => observer.observe(group));
   })();
 
+  /* ============ PROJECT ARCHIVE FILTERS ============ */
+  (function initProjectFilters() {
+    const filters = $$('.project-filter');
+    const projects = $$('.portfolio-project');
+    const status = $('.project-filter-status');
+    if (filters.length === 0 || projects.length === 0) return;
+
+    filters.forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const selected = filter.dataset.filter || 'all';
+        let visible = 0;
+        filters.forEach((item) => {
+          const active = item === filter;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+        projects.forEach((project) => {
+          const matches = selected === 'all' || project.dataset.category === selected;
+          project.classList.toggle('is-filtered-out', !matches);
+          project.classList.toggle('is-filtered-in', matches);
+          if (matches) visible += 1;
+        });
+        if (status) status.textContent = selected === 'all'
+          ? 'Showing all ' + visible + ' projects'
+          : 'Showing ' + visible + ' ' + filter.textContent.replace(/\d+/g, '').trim().toLowerCase();
+      });
+    });
+  })();
+
   /* ============ CHAPTER NAVIGATION (on-page rail) ============ */
   (function initChapterNav() {
     if (document.body.classList.contains('error-page')) return;

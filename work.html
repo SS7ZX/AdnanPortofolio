@@ -97,6 +97,26 @@
     </div>
   </section>
 
+  <section class="project-index" aria-labelledby="project-index-title">
+    <div class="container">
+      <div class="project-index-top">
+        <div>
+          <p class="section-label">Project Index / 2026</p>
+          <h2 id="project-index-title">A working archive, not a highlight reel.</h2>
+        </div>
+        <p>Filter the archive by the kind of work you want to inspect. Every entry links to a deeper case study, a live product, or the public repository where the work is documented.</p>
+      </div>
+      <div class="project-filters" role="group" aria-label="Filter projects">
+        <button class="project-filter is-active" type="button" data-filter="all" aria-pressed="true">All work <span>11</span></button>
+        <button class="project-filter" type="button" data-filter="build" aria-pressed="false">Product builds <span>7</span></button>
+        <button class="project-filter" type="button" data-filter="security" aria-pressed="false">Security <span>1</span></button>
+        <button class="project-filter" type="button" data-filter="research" aria-pressed="false">Research &amp; notes <span>2</span></button>
+        <button class="project-filter" type="button" data-filter="learning" aria-pressed="false">Learning in public <span>1</span></button>
+      </div>
+      <p class="project-filter-status" aria-live="polite">Showing all 11 projects</p>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <div class="section-heading">
@@ -105,35 +125,35 @@
       </div>
 
       <div class="card-grid two github-grid">
-        <article class="card github-card">
+        <article class="card github-card portfolio-project" data-category="research">
           <div class="card-top"><p class="card-kicker">Security Research</p><span class="status">Public</span></div>
           <h3>CTF Writeups</h3>
           <p>Challenge notes and solution write-ups documenting the reasoning behind practical security problem solving.</p>
           <div class="card-footer"><div class="tags"><span class="tag">CTF</span><span class="tag">Security</span><span class="tag">Writeups</span></div><a class="card-link" href="https://github.com/SS7ZX/ctf-writeups" target="_blank" rel="noopener">Open repository &#8599;</a></div>
         </article>
 
-        <article class="card github-card">
+        <article class="card github-card portfolio-project" data-category="research">
           <div class="card-top"><p class="card-kicker">Knowledge Base</p><span class="status">Public</span></div>
           <h3>Pentesting Notes</h3>
           <p>A growing reference of penetration-testing notes and techniques supporting a more repeatable security workflow.</p>
           <div class="card-footer"><div class="tags"><span class="tag">Pentesting</span><span class="tag">Notes</span><span class="tag">Methodology</span></div><a class="card-link" href="https://github.com/SS7ZX/pentesting-notes" target="_blank" rel="noopener">Open repository &#8599;</a></div>
         </article>
 
-        <article class="card github-card">
+        <article class="card github-card portfolio-project" data-category="build">
           <div class="card-top"><p class="card-kicker">React / Firebase</p><span class="status">Public</span></div>
           <h3>ALDU MVP Web</h3>
           <p>A React and Vite web application with Firebase configuration, authentication-ready structure, and an evolving product surface.</p>
           <div class="card-footer"><div class="tags"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">Firebase</span></div><a class="card-link" href="https://github.com/SS7ZX/ALDU-MVP-WEB" target="_blank" rel="noopener">Open repository &#8599;</a></div>
         </article>
 
-        <article class="card github-card">
+        <article class="card github-card portfolio-project" data-category="build">
           <div class="card-top"><p class="card-kicker">Full-Stack Web App</p><span class="status">Public</span></div>
           <h3>Wedding Invitation Platform</h3>
           <p>A Next.js and TypeScript project for a customizable digital invitation experience with a guest-focused application structure.</p>
           <div class="card-footer"><div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Vercel</span></div><a class="card-link" href="https://github.com/SS7ZX/undangan_pernikahan" target="_blank" rel="noopener">Open repository &#8599;</a></div>
         </article>
 
-        <article class="card github-card">
+        <article class="card github-card portfolio-project" data-category="build">
           <div class="card-top"><p class="card-kicker">Portfolio System</p><span class="status">Public</span></div>
           <h3>Adnan Portfolio</h3>
           <p>The repository powering this portfolio: an accessible, responsive static site for presenting development and security work.</p>
@@ -156,7 +176,7 @@
 
       <div class="card-grid two">
 
-        <div class="card project-card">
+        <div class="card project-card portfolio-project" data-category="build">
           <div>
             <div class="card-top">
               <p class="card-kicker">Sole Developer, MERN</p>
@@ -170,7 +190,7 @@
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card portfolio-project" data-category="build">
           <div>
             <div class="card-top">
               <p class="card-kicker">Lead Developer, Team OOTD</p>
@@ -184,7 +204,7 @@
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card portfolio-project" data-category="build">
           <div>
             <div class="card-top">
               <p class="card-kicker">Full-Stack Developer</p>
@@ -199,7 +219,7 @@
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card portfolio-project" data-category="security">
           <div>
             <div class="card-top">
               <p class="card-kicker">Self-Built, Deliberately Vulnerable API</p>
@@ -213,7 +233,7 @@
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card portfolio-project" data-category="learning">
           <div>
             <div class="card-top">
               <p class="card-kicker">Personal Tooling, Early Stage</p>
@@ -227,7 +247,7 @@
           </div>
         </div>
 
-        <div class="card project-card">
+        <div class="card project-card portfolio-project" data-category="build">
           <div>
             <div class="card-top">
               <p class="card-kicker">Reference Implementation</p>

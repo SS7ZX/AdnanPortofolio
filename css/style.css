@@ -538,6 +538,29 @@ h4 { font-size: 1rem; }
 .github-card .card-footer { gap: 4px; }
 .github-actions { margin-top: 30px; }
 
+.project-index {
+  position: relative;
+  padding: 58px 0 32px;
+  background: var(--navy);
+  color: var(--on-ink);
+  border-bottom: 1px solid var(--orange);
+  overflow: hidden;
+}
+.project-index::before { content: 'ARCHIVE / 11'; position: absolute; right: 32px; top: 20px; color: color-mix(in srgb, var(--on-ink) 35%, transparent); font: 10px var(--mono); letter-spacing: .14em; }
+.project-index::after { content: ''; position: absolute; right: 9%; bottom: -110px; width: 300px; height: 220px; border: 1px solid color-mix(in srgb, var(--blue) 22%, transparent); border-radius: 50%; transform: rotate(-18deg); pointer-events: none; }
+.project-index-top { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); gap: 48px; align-items: end; }
+.project-index h2 { max-width: 620px; margin-top: 12px; color: var(--on-ink); font-size: clamp(2rem, 4vw, 3.6rem); }
+.project-index-top > p { max-width: 510px; margin: 0 0 5px; color: color-mix(in srgb, var(--on-ink) 70%, transparent); font-size: .95rem; }
+.project-filters { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 34px; }
+.project-filter { display: inline-flex; align-items: center; gap: 8px; padding: 10px 13px; color: color-mix(in srgb, var(--on-ink) 72%, transparent); background: transparent; border: 1px solid color-mix(in srgb, var(--on-ink) 22%, transparent); cursor: pointer; font: 500 11px var(--mono); letter-spacing: .03em; transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease; }
+.project-filter span { color: var(--orange); font-size: 10px; }
+.project-filter:hover { color: var(--on-ink); border-color: var(--blue); transform: translateY(-2px); }
+.project-filter.is-active { color: var(--on-accent); background: var(--blue); border-color: var(--blue); }
+.project-filter.is-active span { color: var(--on-accent); }
+.project-filter-status { position: relative; z-index: 1; margin: 14px 0 0; color: color-mix(in srgb, var(--on-ink) 48%, transparent); font: 11px var(--mono); }
+.portfolio-project.is-filtered-out { display: none; }
+.portfolio-project.is-filtered-in { animation: filter-in .35s ease both; }
+
 .card-grid.two .card:nth-child(2n) { transform: translateY(24px); }
 .card-grid.two .card:nth-child(2n):hover { transform: translate(-4px, 20px); }
 .card-grid.two .card:first-child { border-top: 5px solid var(--blue); }
@@ -1024,6 +1047,18 @@ body.page-leaving main, body.page-leaving .site-footer { opacity: 0; transform: 
 
 .skip-to-main { position: absolute; left: 16px; top: -60px; z-index: 50; padding: 10px 14px; color: var(--on-ink); background: var(--ink); border: 1px solid var(--ink); }
 .skip-to-main:focus { top: 16px; }
+
+@keyframes filter-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 640px) {
+  .project-index { padding: 48px 0 26px; }
+  .project-index::before { right: 16px; top: 16px; }
+  .project-index-top { grid-template-columns: 1fr; gap: 18px; }
+  .project-index h2 { font-size: clamp(2rem, 10vw, 3rem); }
+  .project-index-top > p { font-size: .9rem; }
+  .project-filters { gap: 6px; margin-top: 26px; }
+  .project-filter { flex: 1 1 auto; justify-content: center; padding: 10px 8px; font-size: 10px; }
+}
 
 /* --------------------------------------------------------------------------
    30 · DARK ART DIRECTION POLISH
