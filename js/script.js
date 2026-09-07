@@ -6,7 +6,7 @@
 
 // ============ CONFIGURATION ============
 const CONFIG = {
-  scrollRevealThreshold: 0.12,
+  scrollRevealThreshold: 0.08,
   scrollRevealRootMargin: '0px 0px -30px',
   backTopVisibleAt: 500,
   navToggleDelay: 0,
@@ -41,6 +41,24 @@ const CONFIG = {
     siteNav.classList.remove('is-open');
     navToggle.setAttribute('aria-expanded', 'false');
   }
+
+  document.addEventListener('click', (event) => {
+    if (!siteNav.contains(event.target) && !navToggle.contains(event.target)) closeNav();
+  });
+})();
+
+// ============ SKIP LINK ============
+(function addSkipLink() {
+  const main = document.querySelector('main');
+  if (!main || document.querySelector('.skip-to-main')) return;
+
+  main.id = main.id || 'main-content';
+  main.setAttribute('tabindex', '-1');
+  const link = document.createElement('a');
+  link.className = 'skip-to-main';
+  link.href = `#${main.id}`;
+  link.textContent = 'Skip to main content';
+  document.body.prepend(link);
 })();
 
 // ============ DYNAMIC FOOTER YEAR ============
@@ -114,7 +132,7 @@ const CONFIG = {
 
   // Target elements for reveal animation
   const revealElements = document.querySelectorAll(
-    '.feature-card, .card, .timeline-item, .case-study, .stack-group'
+    '.hero > .container, .page-hero > .container, .section-heading, .feature-card, .card, .timeline-item, .case-study, .stack-group, .contact-panel, .table-wrap, .faq'
   );
 
   if (revealElements.length === 0) return;
@@ -139,6 +157,13 @@ const CONFIG = {
   );
 
   revealElements.forEach((el) => revealObserver.observe(el));
+})();
+
+// ============ EXTERNAL LINK AFFORDANCES ============
+(function markExternalLinks() {
+  document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+    link.setAttribute('aria-label', `${link.textContent.trim()} (opens in a new tab)`);
+  });
 })();
 
 // ============ ERROR HANDLING ============
