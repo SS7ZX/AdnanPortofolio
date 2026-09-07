@@ -69,7 +69,7 @@
 
       document.body.classList.add('page-leaving');
       curtain.classList.add('is-active');
-      window.setTimeout(() => window.location.assign(destination.href), 460);
+      window.setTimeout(() => window.location.assign(destination.href), 560);
     });
 
     window.addEventListener('pageshow', () => {

@@ -837,10 +837,10 @@ html.js.is-ready .page-hero .container > *:nth-child(2) { animation-delay: .2s; 
 html.js.is-ready .page-hero .container > *:nth-child(3) { animation-delay: .3s; }
 html.js.is-ready .page-hero .container > *:nth-child(4) { animation-delay: .4s; }
 
-/* page-load fade (class toggled by JS) */
-body.page-loading main, body.page-loading .site-footer { opacity: 0; transform: translateY(14px); }
-body main, body .site-footer { transition: opacity .65s ease, transform .65s cubic-bezier(.2, .7, .2, 1); }
-body.page-leaving main, body.page-leaving .site-footer { opacity: 0; transform: translateY(-12px); }
+/* page-load slide (class toggled by JS) */
+body.page-loading main, body.page-loading .site-footer { opacity: 0; transform: translateX(28px); }
+body main, body .site-footer { will-change: opacity, transform; transition: opacity .72s ease, transform .72s cubic-bezier(.16, 1, .3, 1); }
+body.page-leaving main, body.page-leaving .site-footer { opacity: 0; transform: translateX(-28px); }
 
 /* --------------------------------------------------------------------------
    26 · VIEW TRANSITIONS
@@ -917,8 +917,8 @@ body.page-leaving main, body.page-leaving .site-footer { opacity: 0; transform: 
 @keyframes register-float { from { transform: rotate(-2deg) translate(0, 0); } to { transform: rotate(-1deg) translate(8px, 5px); } }
 @keyframes register-pulse { 0%, 100% { opacity: .55; transform: rotate(3deg) scale(1); } 50% { opacity: 1; transform: rotate(2deg) scale(1.012); } }
 @keyframes availability-pulse { 0%, 100% { transform: rotate(11deg) scale(1); } 50% { transform: rotate(11deg) scale(1.045); } }
-@keyframes vt-out { to { opacity: 0; transform: translateY(-20px); } }
-@keyframes vt-in { from { opacity: 0; transform: translateY(20px); } }
+@keyframes vt-out { to { opacity: 0; transform: translateX(-3vw); } }
+@keyframes vt-in { from { opacity: 0; transform: translateX(3vw); } }
 
 /* --------------------------------------------------------------------------
    29 · REDUCED MOTION · RESPONSIVE · PRINT
@@ -1263,11 +1263,11 @@ details summary:hover { padding-left: 10px; color: var(--blue-dark); }
   color: var(--on-ink);
   background: var(--ink);
   pointer-events: none;
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path .65s var(--ease-smooth);
+  transform: translateX(100%);
+  transition: transform .72s var(--ease-smooth);
 }
 .page-transition-curtain::before { content: 'LOADING / NEXT PAGE'; color: var(--orange); font: 11px var(--mono); letter-spacing: .16em; }
-.page-transition-curtain.is-active { clip-path: inset(0); }
+.page-transition-curtain.is-active { transform: translateX(0); }
 
 @keyframes slow-orbit { to { transform: rotate(360deg); } }
 
