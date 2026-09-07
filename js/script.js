@@ -432,6 +432,84 @@
     });
   })();
 
+  /* ============ MAGNETIC ACTIONS ============ */
+  (function initMagneticActions() {
+    if (!finePointer.matches || reducedMotion.matches) return;
+
+    const elements = $$('.button, .site-nav .nav-cta');
+    const states = new Map();
+    let animationFrame = 0;
+
+    function animate() {
+      let moving = false;
+      states.forEach((state, element) => {
+        state.x += (state.targetX - state.x) * .18;
+        state.y += (state.targetY - state.y) * .18;
+        element.style.setProperty('--mag-x', state.x.toFixed(2) + 'px');
+        element.style.setProperty('--mag-y', state.y.toFixed(2) + 'px');
+        if (Math.abs(state.targetX - state.x) > .05 || Math.abs(state.targetY - state.y) > .05) moving = true;
+      });
+      animationFrame = moving ? window.requestAnimationFrame(animate) : 0;
+    }
+
+    function startAnimation() {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(animate);
+    }
+
+    elements.forEach((element) => {
+      element.classList.add('magnetic');
+      states.set(element, { x: 0, y: 0, targetX: 0, targetY: 0 });
+
+      element.addEventListener('pointermove', (event) => {
+        const bounds = element.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - .5;
+        const y = (event.clientY - bounds.top) / bounds.height - .5;
+        const state = states.get(element);
+        state.targetX = Math.max(-9, Math.min(9, x * 12));
+        state.targetY = Math.max(-7, Math.min(7, y * 10));
+        startAnimation();
+      });
+
+      element.addEventListener('pointerleave', () => {
+        const state = states.get(element);
+        state.targetX = 0;
+        state.targetY = 0;
+        startAnimation();
+      });
+    });
+  })();
+
+  /* ============ SLIDING NAV DOCK ============ */
+  (function initSlidingNavDock() {
+    if (!finePointer.matches || reducedMotion.matches) return;
+
+    const nav = $('.site-nav');
+    if (!nav) return;
+    const links = $$('a', nav);
+
+    function moveDock(link) {
+      nav.style.setProperty('--dock-left', link.offsetLeft + 'px');
+      nav.style.setProperty('--dock-top', link.offsetTop + 'px');
+      nav.style.setProperty('--dock-width', link.offsetWidth + 'px');
+      nav.style.setProperty('--dock-height', link.offsetHeight + 'px');
+      nav.style.setProperty('--dock-opacity', '.95');
+    }
+
+    const current = nav.querySelector('a[aria-current="page"]');
+    if (current) {
+      moveDock(current);
+      nav.style.setProperty('--dock-opacity', '.35');
+    }
+
+    links.forEach((link) => {
+      link.addEventListener('pointerenter', () => moveDock(link));
+    });
+    nav.addEventListener('pointerleave', () => {
+      if (current) moveDock(current);
+      nav.style.setProperty('--dock-opacity', current ? '.35' : '0');
+    });
+  })();
+
   /* ============ SCROLL MARKER (reading progress) ============ */
   (function initScrollMarker() {
     const marker = document.createElement('div');
