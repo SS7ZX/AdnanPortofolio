@@ -79,7 +79,7 @@
         toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
       }
       const meta = $('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', isDark ? '#0E141B' : '#EDE7D6');
+      if (meta) meta.setAttribute('content', isDark ? '#080C12' : '#EDE7D6');
       if (persist) {
         try { localStorage.setItem('theme', theme); } catch (e) { /* private mode */ }
       }
@@ -406,4 +406,4 @@
   })();
 
   console.log('Portfolio loaded - Adnan Syukur');
-})();
+})();
