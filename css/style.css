@@ -534,6 +534,9 @@ h4 { font-size: 1rem; }
 .card-footer { display: flex; flex-direction: column; margin-top: auto; }
 .project-card { min-height: 330px; display: flex; flex-direction: column; }
 .project-card .card-footer { margin-top: auto; }
+.github-card { min-height: 310px; }
+.github-card .card-footer { gap: 4px; }
+.github-actions { margin-top: 30px; }
 
 .card-grid.two .card:nth-child(2n) { transform: translateY(24px); }
 .card-grid.two .card:nth-child(2n):hover { transform: translate(-4px, 20px); }
