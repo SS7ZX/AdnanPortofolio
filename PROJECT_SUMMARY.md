@@ -5,7 +5,8 @@
 A comprehensive, security-focused professional portfolio website showcasing full-stack development expertise and web application security knowledge. Built with vanilla HTML5, CSS3, and JavaScript—no frameworks, no bloat. Designed for performance, accessibility, and professional impact.
 
 **Status**: ✅ Production Ready  
-**Last Updated**: 2026-09-02  
+**Last Updated**: 2026-09-07  
+**Version**: 3.0.0  
 **Deployment Platform**: Firebase Hosting  
 **Live URL**: https://myportofolio-11053.web.app/  
 
@@ -135,7 +136,7 @@ adnan-portfolio/
 
 **Variables System**:
 - Color palette: ink, ink-soft, muted, paper, white, line, blue, orange, green, navy
-- Typography: Manrope (body), DM Mono (code/UI)
+- Typography: Inter (body), Fraunces (display), IBM Plex Mono (code/UI)
 - Layout: Container width 1180px, flexible padding
 - Responsive: Mobile-first with breakpoints at 820px and 640px
 
@@ -346,7 +347,8 @@ adnan-portfolio/
 ## Future Enhancement Roadmap
 
 ### Phase 2 (Q4 2026)
-- [ ] Dark mode toggle
+- [x] Dark mode toggle (shipped in v3.0.0)
+- [x] Enhanced project case studies (shipped in v3.0.0)
 - [ ] Blog section with markdown support
 - [ ] Enhanced project case studies
 - [ ] Video testimonials
@@ -423,7 +425,7 @@ adnan-portfolio/
 ## Credits & Acknowledgments
 
 - **Design & Development**: Adnan Syukur
-- **Fonts**: Google Fonts (Manrope, DM Mono)
+- **Fonts**: Google Fonts (Inter, Fraunces, IBM Plex Mono)
 - **Hosting**: Firebase (Google Cloud)
 - **Icons**: SVG custom design
 - **Inspiration**: Modern web best practices and OWASP security principles

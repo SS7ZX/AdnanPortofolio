@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#122033">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="light dark">
+<script>
+/* Theme init: apply saved or system preference before first paint. */
+(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}})();
+</script>
 <meta name="robots" content="noindex, follow">
 
 <!-- Canonical URL -->
@@ -38,6 +42,7 @@
 
 <!-- Stylesheet -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
 </head>
 <body class="error-page error-page-404">
 
@@ -60,6 +65,11 @@
     <div class="nav-meta" aria-label="Availability status">
       <span class="nav-status"><span class="nav-status-dot"></span>Open to work</span>
     </div>
+
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
 
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -143,9 +153,42 @@
 </main>
 
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <p>Adnan Syukur — building thoughtful digital products with secure foundations.</p>
-    <p>&copy; <span id="year"></span></p>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">AS</span>
+          <span class="brand-label">Adnan Syukur</span>
+        </a>
+        <p>Building thoughtful digital products with secure foundations — full-stack development and web security, documented honestly.</p>
+        <span class="nav-status"><span class="nav-status-dot"></span>Open to internship &amp; entry-level roles</span>
+      </div>
+      <nav class="footer-col" aria-label="Site links">
+        <h4>Site</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="experience.html">Experience</a>
+        <a href="work.html">Work</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <a href="https://github.com/SS7ZX" target="_blank" rel="noopener">GitHub &#8599;</a>
+        <a href="https://www.linkedin.com/in/adnansyukurs/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+        <a href="assets/Adnan%20Syukur%20CV.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        <a href="Adnan-Syukur-CV.html">CV (HTML)</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:adnannsyukurr@gmail.com">adnannsyukurr@gmail.com</a>
+        <span>Jakarta, Indonesia</span>
+        <span>Response within 48 hours</span>
+      </div>
+    </div>
+    <div class="footer-inner">
+      <p>&copy; <span id="year"></span> Adnan Syukur — built by hand, tested like an attacker.</p>
+      <p>AS / 2026</p>
+    </div>
   </div>
 </footer>
 

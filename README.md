@@ -70,10 +70,17 @@ adnan-portfolio/
 - Back-to-top button (appears after 500px scroll)
 - Smooth anchors with fallback for reduced-motion preference
 - FAQ accordion with semantic `<details>/<summary>`
+- Animated stat counters and skill-bar fill on scroll
+- Marquee ticker strip (pauses on hover)
+- On-page chapter rail with scroll-spy (desktop)
+- Custom cursor accent (fine pointers only, reduced-motion aware)
+- View Transitions API page transitions with a slide/fade
+- Dark mode toggle with `localStorage` persistence and system-preference detection
 
 ### Typography
-- Manrope font family for body text (clean, modern, readable)
-- DM Mono for code and UI elements (technical feel)
+- Inter for body text (clean, modern, readable)
+- Fraunces for display headlines (editorial serif character)
+- IBM Plex Mono for code and UI annotations (technical feel)
 - Responsive font sizing with `clamp()` function
 - Consistent line-height and letter-spacing
 
@@ -222,9 +229,9 @@ firebase deploy
 
 ## Future Enhancements
 
+- [x] Add dark mode toggle
 - [ ] Add Schema.org structured data (JSON-LD)
 - [ ] Implement service worker for offline support
-- [ ] Add dark mode toggle
 - [ ] Blog section with markdown support
 - [ ] Project case study deep dives
 - [ ] Contact form with email backend
@@ -258,5 +265,6 @@ firebase deploy
 ---
 
 **Built with**: HTML5, CSS3, Vanilla JavaScript  
-**Last Updated**: 2026-09-02  
+**Last Updated**: 2026-09-07  
+**Version**: 3.0.0  
 **Status**: Production Ready

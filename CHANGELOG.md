@@ -4,6 +4,36 @@ All notable changes to the Adnan Syukur portfolio are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-09-07
+
+### Added
+- **Dark mode**: theme toggle in the header with `localStorage` persistence, system-preference detection, and a flash-free inline init script; `theme-color` meta updates per theme
+- **Animated stats band** on the homepage (shipped projects, certifications, VAPT award, years building) with scroll-triggered counting
+- **Marquee ticker strip** on the homepage listing disciplines and focus areas
+- **Proficiency matrix** on the About page: 16 animated skill bars calibrated to depth of shipped work (Advanced / Working / Learning)
+- **Chapter navigation**: fixed on-page rail built automatically from section labels, with scroll-spy highlighting (desktop only)
+- **Custom cursor**: pointer-following dot + trailing ring with hover states (fine pointers, reduced-motion aware, hidden on touch)
+- **Fonts actually load now**: Google Fonts stylesheet (Fraunces, Inter, IBM Plex Mono) was referenced by the CSS but never linked; preconnect existed without the stylesheet
+- **`assets/favicon.svg`**: the brand mark was referenced by every page but the file did not exist; created in the case-file style
+- **Staged page-load entrances** for hero and page-hero content, plus View Transition API page transitions with a slide/fade animation
+- **Upgraded footer**: brand block, site links, social/profiles, contact info, availability chip, and colophon
+- **Header scrolled state**: subtle shadow once the page scrolls past the top
+- **Grain texture overlay** for paper depth (pointer-safe, no-JS safe)
+- **Reading progress marker** restyled as a gradient bar
+
+### Changed
+- `css/style.css` fully rewritten from six stacked "final art direction" blocks into a single coherent token-driven stylesheet (light + dark palettes, no duplicate palettes)
+- `js/script.js` rewritten into a single IIFE with discrete modules; every feature degrades gracefully (no JS, no IntersectionObserver, reduced motion)
+- Contact panel, buttons, status chips, and nav CTA now use `--on-ink` / `--on-accent` contrast tokens so every surface stays WCAG AA in both themes
+- Footer on all seven pages replaced with a comprehensive grid layout
+- 404/500 error pages share the new header, theme toggle, and footer
+- CV page: removed stray comment, added favicon link
+
+### Fixed
+- Broken favicon reference on every page (file missing)
+- Fonts silently falling back to system stacks (stylesheets were never linked)
+- Hero-frame entrance animation could have overridden the pointer-tilt transform; frame now enters via the page fade instead
+
 ## [2.0.0] - 2026-09-02
 
 ### Added
