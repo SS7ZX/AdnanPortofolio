@@ -41,7 +41,7 @@
 <!-- Stylesheet -->
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="error-page error-page-500">
 
 <header class="site-header">
   <div class="container header-inner">
@@ -72,10 +72,17 @@
 <main>
 
   <section class="page-hero error-hero">
-    <div class="container">
-      <p class="kicker">Error 500</p>
-      <h1>Server error.</h1>
-      <p>Something went wrong on our server. This is not your fault. We're working to fix it as quickly as possible.</p>
+    <div class="container error-hero-grid">
+      <div class="error-hero-copy">
+        <p class="kicker">System / Temporary interruption</p>
+        <h1>Server error.</h1>
+        <p>Something interrupted the request on our side. The issue is temporary, and the best next step is to retry or return to a stable page.</p>
+      </div>
+      <div class="error-display" aria-label="Error 500: server error">
+        <span class="error-display-index">SYSTEM / 500</span>
+        <strong>500</strong>
+        <span class="error-display-caption">Temporary fault.<br>Try again shortly.</span>
+      </div>
     </div>
   </section>
 

@@ -41,7 +41,7 @@
 <!-- Stylesheet -->
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="error-page error-page-404">
 
 <header class="site-header">
   <div class="container header-inner">
@@ -72,10 +72,17 @@
 <main>
 
   <section class="page-hero error-hero">
-    <div class="container">
-      <p class="kicker">Error 404</p>
-      <h1>Page not found.</h1>
-      <p>The page you're looking for doesn't exist. It may have moved, been deleted, or you might have followed a broken link.</p>
+    <div class="container error-hero-grid">
+      <div class="error-hero-copy">
+        <p class="kicker">System / Route unavailable</p>
+        <h1>Page not found.</h1>
+        <p>The page you requested is not part of the current portfolio map. It may have moved, been archived, or the link may be incomplete.</p>
+      </div>
+      <div class="error-display" aria-label="Error 404: page not found">
+        <span class="error-display-index">ROUTE / 404</span>
+        <strong>404</strong>
+        <span class="error-display-caption">Nothing here.<br>Try another direction.</span>
+      </div>
     </div>
   </section>
 
