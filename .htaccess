@@ -112,7 +112,7 @@ ErrorDocument 400 /404.html
   AddType font/woff2 woff2
 </IfModule>
 
-# ============ DIRECTORY ACCESS ============
+# ============ DIRECTORY ACCESS ======
 
 # Prevent directory listing
 <IfModule mod_autoindex.c>
