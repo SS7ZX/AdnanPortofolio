@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  /* ============ HELPERS & CONFIG ============ */
+  /* ===== HELPERS & CONFIG ====== */
   const $ = (sel, ctx) => (ctx || document).querySelector(sel);
   const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
