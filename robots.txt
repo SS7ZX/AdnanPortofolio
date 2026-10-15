@@ -24,4 +24,4 @@ User-agent: MJ12bot
 Disallow: /
 
 # Sitemap location
-Sitemap: https://adnan-portofolio-navy.vercel.app/sitemap.xml
+Sitemap:https://adnanporto.my.id/sitemap.xml
