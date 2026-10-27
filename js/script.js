@@ -18,11 +18,20 @@
     scrollRevealRootMargin: '0px 0px -30px',
     backTopVisibleAt: 500,
     countDuration: 900,
-    pageLoadMaxWait: 1400,
   };
 
   const root = document.documentElement;
   root.classList.add('js');
+
+  /* Let the first frame use system fallbacks before applying the web fonts. */
+  const webFonts = $('link[data-font-stylesheet]');
+  if (webFonts) {
+    window.requestAnimationFrame(() => {
+      window.setTimeout(() => {
+        webFonts.rel = 'stylesheet';
+      }, 0);
+    });
+  }
 
   /* ============ PAGE-READY BOOT ============ */
   /* html.js.is-ready switches on the staged hero/page-hero entrance animations. */
@@ -35,26 +44,12 @@
     bootReady();
   }
 
-  /* Fade the page in once everything critical has painted.
-     A timeout guards against load events that never fire. */
-  document.body.classList.add('page-loading');
-  function revealPage() {
-    document.body.classList.remove('page-loading');
-    const curtain = $('.page-transition-curtain');
-    if (curtain) {
-      window.requestAnimationFrame(() => curtain.classList.remove('is-active'));
-    }
-  }
-  window.addEventListener('load', revealPage, { once: true });
-  window.setTimeout(revealPage, CONFIG.pageLoadMaxWait);
-
   /* ============ PAGE TRANSITIONS ============ */
   /* A branded fallback works across static hosting and browsers without
      cross-document View Transitions support. */
   (function initPageTransitions() {
     const curtain = document.createElement('div');
     curtain.className = 'page-transition-curtain';
-    curtain.classList.add('is-active');
     curtain.setAttribute('aria-hidden', 'true');
     document.body.appendChild(curtain);
 
@@ -79,9 +74,7 @@
 
     window.addEventListener('pageshow', () => {
       document.body.classList.remove('page-leaving');
-      if (!document.body.classList.contains('page-loading')) {
-        curtain.classList.remove('is-active');
-      }
+      curtain.classList.remove('is-active');
     });
   })();
 
