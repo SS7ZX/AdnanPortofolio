@@ -76,6 +76,11 @@ Sitemap: https://adnanporto.my.id/sitemap.xml
 - Tells search engines which pages to crawl
 - Provides sitemap location
 
+After deployment, verify the site in Google Search Console using the verification
+meta tag in `index.html`, submit `https://adnanporto.my.id/sitemap.xml`, and use URL
+Inspection to request crawling of important pages. These steps support discovery but
+do not guarantee indexing.
+
 #### sitemap.xml Configuration
 
 **Includes**: All main pages and the HTML CV
