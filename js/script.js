@@ -470,10 +470,11 @@
     const links = $$('a', nav);
 
     function moveDock(link) {
-      nav.style.setProperty('--dock-left', link.offsetLeft + 'px');
-      nav.style.setProperty('--dock-top', link.offsetTop + 'px');
-      nav.style.setProperty('--dock-width', link.offsetWidth + 'px');
-      nav.style.setProperty('--dock-height', link.offsetHeight + 'px');
+      const { offsetLeft, offsetTop, offsetWidth, offsetHeight } = link;
+      nav.style.setProperty('--dock-left', offsetLeft + 'px');
+      nav.style.setProperty('--dock-top', offsetTop + 'px');
+      nav.style.setProperty('--dock-width', offsetWidth + 'px');
+      nav.style.setProperty('--dock-height', offsetHeight + 'px');
       nav.style.setProperty('--dock-opacity', '.95');
     }
 
