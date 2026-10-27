@@ -68,46 +68,23 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
-Disallow: /*.pdf$
 
-Crawl-delay: 1
-
-User-agent: Googlebot
-Crawl-delay: 0.5
-
-User-agent: Bingbot
-Crawl-delay: 1
-
-User-agent: MJ12bot
-Disallow: /
-
-Sitemap: https://myportofolio-11053.web.app/sitemap.xml
+Sitemap: https://adnanporto.my.id/sitemap.xml
 ```
 
 **Purpose**:
 - Tells search engines which pages to crawl
-- Sets crawl speed to avoid server overload
-- Blocks aggressive bots
 - Provides sitemap location
 
 #### sitemap.xml Configuration
 
-**Includes**: All main pages
+**Includes**: All main pages and the HTML CV
 ```xml
 <url>
-  <loc>https://myportofolio-11053.web.app/</loc>
-  <lastmod>2026-09-02</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>1.0</priority>
+  <loc>https://adnanporto.my.id/Adnan-Syukur-CV.html</loc>
+  <lastmod>2026-10-27</lastmod>
 </url>
 ```
-
-**Change Frequencies**:
-- Homepage: weekly (most important)
-- Work/Projects: bi-weekly (updated regularly)
-- About/Experience: monthly
-- Contact: monthly
-- CV: quarterly (less frequent changes)
 
 **Priority Levels**:
 - Homepage: 1.0 (highest)
