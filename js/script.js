@@ -33,17 +33,6 @@
     });
   }
 
-  /* ============ PAGE-READY BOOT ============ */
-  /* html.js.is-ready switches on the staged hero/page-hero entrance animations. */
-  function bootReady() {
-    root.classList.add('is-ready');
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bootReady);
-  } else {
-    bootReady();
-  }
-
   /* ============ PAGE TRANSITIONS ============ */
   /* A branded fallback works across static hosting and browsers without
      cross-document View Transitions support. */
