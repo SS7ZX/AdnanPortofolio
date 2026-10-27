@@ -86,18 +86,11 @@ Sitemap: https://adnanporto.my.id/sitemap.xml
 </url>
 ```
 
-**Priority Levels**:
-- Homepage: 1.0 (highest)
-- Work: 0.9
-- About/Experience: 0.8
-- Contact: 0.8
-- CV: 0.7
-
 ### 3. Custom Error Pages
 
 #### 404 Page (Not Found)
 **File**: `/404.html`
-**URL**: `https://myportofolio-11053.web.app/404.html`
+**URL**: `https://adnanporto.my.id/404.html`
 **Features**:
 - Branded design matching site
 - Helpful navigation suggestions
@@ -121,7 +114,7 @@ Sitemap: https://adnanporto.my.id/sitemap.xml
 
 #### 500 Page (Server Error)
 **File**: `/500.html`
-**URL**: `https://myportofolio-11053.web.app/500.html`
+**URL**: `https://adnanporto.my.id/500.html`
 **Features**:
 - Clear communication of issue
 - Reassurance ("this is not your fault")
@@ -262,7 +255,7 @@ Current site is ready to add Schema.org structured data:
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Adnan Syukur",
-  "url": "https://myportofolio-11053.web.app/",
+  "url": "https://adnanporto.my.id/",
   "sameAs": [
     "https://linkedin.com/in/adnansyukurs/",
     "https://github.com/SS7ZX"
