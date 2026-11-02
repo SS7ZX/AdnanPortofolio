@@ -16,7 +16,7 @@ This portfolio is built with security-first principles:
 
 | Version | Status | Support Until |
 |---------|--------|---------------|
-| 2.0.x   | Current | 2027-09-02 |
+| 2.0.x   | Current| 2027-09-02 |
 | 1.5.x   | Deprecated | 2026-12-02 |
 | 1.0.x   | Unsupported | 2026-09-02 |
 
